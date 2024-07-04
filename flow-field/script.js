@@ -44,12 +44,12 @@ class Particle {
 }
 
 class FlowField {
-    static colors = ['#55065c', '#9510a1', '#b21fbf', '#c538d1', '#cf62d9'];
-    constructor(cellSize, zoom, curve, particlesCount) {
+    constructor(cellSize, zoom, curve, particlesCount, colors) {
         this.cellSize = cellSize;
         this.zoom = zoom;
         this.curve = curve;
         this.particlesCount = particlesCount;
+        this.colors = colors;
     }
 
     init(canvas) {
@@ -74,7 +74,7 @@ class FlowField {
                 Math.floor(Math.random() * 5 + 2),
                 Math.floor(Math.random() * 200 + 10),
                 Math.floor(Math.random() * 100),
-                FlowField.colors[Math.floor(Math.random() * 5 + 1)]);
+                this.colors[Math.floor(Math.random() * (this.colors.length + 1))]);
             this.particles.push(particle);
         }
     }
@@ -102,13 +102,25 @@ class FlowField {
     }
 }
 
+var obj = {
+    cellSize: 20,
+    zoom: .1,
+    curve: 2.3,
+    particlesCount: 1000,
+    color0: '#55065c',
+    color1: '#9510a1',
+    color2: '#b21fbf',
+    color3: '#c538d1',
+    color4: '#cf62d9'
+};
+
 window.onload = () => {
     let canvas = document.getElementById('canvas');
     let ctx = canvas.getContext('2d');
     let lastTimeStep = 0;
     let animationRequest;
-    let flowField = new FlowField(20, .1, 2.3, 1000);
-    
+    let flowField = new FlowField(20, .1, 2.3, 1000, ['#55065c', '#9510a1', '#b21fbf', '#c538d1', '#cf62d9']);
+
     function init() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -129,6 +141,37 @@ window.onload = () => {
 
     init();
     animate();
+
+    let gui = new dat.gui.GUI();
+    gui.remember(obj);
+    gui.add(obj, 'cellSize', 5, 50, 2).onFinishChange(cellSize => {
+        flowField.cellSize = cellSize; init();
+    });
+    gui.add(obj, 'zoom', .01, 0.25, .01).onFinishChange(zoom => {
+        flowField.zoom = zoom; init();
+    });
+    gui.add(obj, 'curve', 1, 30, 1).onFinishChange(curve => {
+        flowField.curve = curve; init();
+    });
+    gui.add(obj, 'particlesCount', 100, 10000, 100).onFinishChange(particlesCount => {
+        flowField.particlesCount = particlesCount; init();
+    });
+    let f1 = gui.addFolder('Colors');
+    f1.addColor(obj, 'color0').onFinishChange(color0 => {
+        flowField.colors[0] = color0; init();
+    });
+    f1.addColor(obj, 'color1').onFinishChange(color1 => {
+        flowField.colors[1] = color1; init();
+    });
+    f1.addColor(obj, 'color2').onFinishChange(color2 => {
+        flowField.colors[2] = color2; init();
+    });
+    f1.addColor(obj, 'color3').onFinishChange(color3 => {
+        flowField.colors[3] = color3; init();
+    });
+    f1.addColor(obj, 'color4').onFinishChange(color4 => {
+        flowField.colors[4] = color4; init();
+    });
 
     window.onresize = () => {
         window.cancelAnimationFrame(animationRequest);
