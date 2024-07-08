@@ -33,7 +33,7 @@ class Particle {
 
     // update particle position
     update(canvas, mouse) {
-        // toggle direction if position is outside the canvas 
+        // toggle direction if position is outside the canvas
         if (this.posX + this.radius > canvas.width || this.posX - this.radius < 0) {
             this.dirX = -this.dirX;
         }
@@ -47,9 +47,6 @@ class Particle {
         if (mouse.posX === undefined || mouse.posY === undefined) {
             return;
         }
-
-        let dx = this.posX - mouse.posX;
-        let dy = this.posY - mouse.posY;
 
         // return if particle is outside mouse radius
         if (this.distance(mouse) > mouse.radius) {
@@ -90,7 +87,6 @@ class Particle {
     }
 }
 
-
 window.onload = () => {
     let canvas = document.getElementById('canvas');
     let ctx = canvas.getContext('2d');
@@ -98,7 +94,7 @@ window.onload = () => {
     let particles = [];
     let animationRequest;
     let mouse = new Mouse;
-    
+
     // Particle system initialization
     function init() {
         canvas.width = window.innerWidth;
@@ -115,7 +111,7 @@ window.onload = () => {
                 1 - 2 * Math.random(),
                 1 - 2 * Math.random());
             particles.push(particle);
-        }  
+        }
     }
 
     // Particle system animation
