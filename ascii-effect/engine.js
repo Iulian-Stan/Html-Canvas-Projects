@@ -1,9 +1,9 @@
 export class Engine {
-    constructor(canvas, asciiArt, imageLoader) {
+    constructor(canvas, asciiEffect, imageLoader) {
         this.canvas = canvas;
         this.context2d = canvas.getContext('2d');
         this.frameRate = 0;
-        this.asciiArt = asciiArt;
+        this.asciiEffect = asciiEffect;
         this.imageLoader = imageLoader;
         imageLoader.listener = this.#updateImage.bind(this);
     }
@@ -17,7 +17,7 @@ export class Engine {
     #updateImage() {
         if (this.imageLoader.image) {
             this.context2d.drawImage(this.imageLoader.image, 0, 0, this.canvas.width, this.canvas.height);
-            this.asciiArt.image = this.context2d.getImageData(0, 0, this.canvas.width, this.canvas.height);
+            this.asciiEffect.image = this.context2d.getImageData(0, 0, this.canvas.width, this.canvas.height);
         }
     }
 
@@ -31,12 +31,12 @@ export class Engine {
         this.previousTimeStamp = timeStamp;
         // clear the canvas
         this.context2d.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        if (this.asciiArt.resolution === 1) {
+        if (this.asciiEffect.resolution === 1) {
             // draw image
             this.context2d.drawImage(this.imageLoader.image, 0, 0, this.canvas.width, this.canvas.height);
         } else {
             // draw ascii
-            this.asciiArt.draw(this.context2d);
+            this.asciiEffect.draw(this.context2d);
         }
         this.animationRequest = window.requestAnimationFrame(this.#animationRun.bind(this));
     }

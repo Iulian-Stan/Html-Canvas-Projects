@@ -17,7 +17,7 @@ export class Particle {
 
     connect(context2d, x, y, color) {
         context2d.save();
-        context2d.strokeStyle = color;//`rgba(255, 255, 255, ${1 - distance / PARTICLES_CONNECT_DISTANCE})`;
+        context2d.strokeStyle = color;
         context2d.lineWidth = 1;
         context2d.beginPath();
         context2d.moveTo(this.posX, this.posY);

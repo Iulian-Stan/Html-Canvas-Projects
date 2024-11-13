@@ -1,14 +1,14 @@
 import { Pane } from '../libs/tweakpane/tweakpane-4.0.5.js';
 import * as TweakpaneFileImportPlugin from '../libs/tweakpane/tweakpane-plugin-file-import-1.1.1.js';
 import { ImageLoader } from './image-loader.js';
-import { AsciiEffect } from './ascii-effect.js';
+import { ParticleEffect } from './particle-effect.js';
 import { Engine } from './engine.js';
 
 window.onload = () => {
     let canvas = document.getElementById('canvas');
     let imageLoader = new ImageLoader('../resources/deadpool.png');
-    let asciiEffect = new AsciiEffect(10, 'Poppins');
-    let engine = new Engine(canvas, asciiEffect, imageLoader);
+    let particleEffect = new ParticleEffect(10);
+    let engine = new Engine(canvas, particleEffect, imageLoader);
 
     engine.init(window.innerWidth, window.innerHeight);
     engine.startAnimation();
@@ -20,7 +20,7 @@ window.onload = () => {
     pane.addBinding(engine, 'frameRate', { readonly: true });
 
     const params = pane.addFolder({ title: 'Parameters' });
-    params.addBinding(asciiEffect, 'resolution', { min: 1, max: 100, step: 1 });
+    params.addBinding(particleEffect, 'resolution', { min: 1, max: 100, step: 1 });
 
     const image = params.addFolder({ title: 'Image' });
     image.addBinding(imageLoader, 'imageFile', {
@@ -34,5 +34,15 @@ window.onload = () => {
         engine.stopAnimation();
         engine.init(window.innerWidth, window.innerHeight);
         engine.startAnimation();
+    };
+
+    canvas.onmouseenter = canvas.onmousemove = event => {
+        engine.mouseX = event.x;
+        engine.mouseY = event.y;
+    };
+
+    canvas.onmouseleave = () => {
+        engine.mouseX = undefined;
+        engine.mouseY = undefined;
     };
 };
