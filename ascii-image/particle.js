@@ -28,10 +28,8 @@ export class Particle {
      * @param {string} font
      */
     draw(context2d, font) {
-        context2d.save();
         context2d.font = font;
         context2d.fillStyle = this.#color;
         context2d.fillText(this.#symbol, this.#x, this.#y);
-        context2d.restore();
     }
 }
