@@ -1,5 +1,5 @@
-import { randomInt } from "../libs/random.js";
-import { Particle } from "./particle.js";
+import { randomInt } from '../libs/random.js';
+import { Particle } from './particle.js';
 
 export class ImageParticles {
     /** @type {number} */

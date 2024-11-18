@@ -1,4 +1,4 @@
-import { Vector2D } from "../libs/vector2d.js";
+import { Vector2D } from '../libs/vector2d.js';
 const PI2 = Math.PI * 2;
 
 export class Particle {

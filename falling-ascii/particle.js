@@ -1,4 +1,4 @@
-import { Vector2D } from "../libs/vector2d.js";
+import { Vector2D } from '../libs/vector2d.js';
 
 export class Particle {
     /**

@@ -1,5 +1,5 @@
 import { Particle } from './particle.js';
-import { randomFloat, randomInt } from '../libs/random.js';
+import { randomInt } from '../libs/random.js';
 const SYMBOLS = ' :\/^-~|;_><"+!{}=*?)(71]3[IJ#52C6L9V8T4$YFAS%0UEZPXNG@OK&RQDHWBM';
 
 export class FallingAscii {
@@ -190,6 +190,8 @@ export class FallingAscii {
         if (this.monochrome) {
             context2d.fillStyle = this.particleColor;
         }
+        context2d.textAlign = 'center';
+        context2d.textBaseline = 'middle';
         for (let i = 0; i < this.#particles.length; ++i) {
             context2d.globalAlpha = this.#imageLuminosity[Math.floor(this.#particles[i].y)][Math.floor(this.#particles[i].x)] * .5;
             if (!this.monochrome) {

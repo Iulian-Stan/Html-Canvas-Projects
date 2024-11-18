@@ -1,31 +1,23 @@
+import { Vector2D } from '../libs/vector2d.js';
+
 const PI2 = Math.PI * 2;
 
 export class Particle {
     /**
-     * Particle X coordinate
-     * @type {number}
+     * Particle position
+     * @type {Vector2D}
      */
-    #x;
-    /**
-     * Particle Y coordinate
-     * @type {number}
-     */
-    #y;
+    #position;
     /**
      * Particle radius
      * @type {number}
      */
     #radius;
     /**
-     * Particle movement displacement on X axis
-     * @type {number}
+     * Particle movement displacement
+     * @type {Vector2D}
      */
-    #dx;
-    /**
-     * Particle movement displacement on Y axis
-     * @type {number}
-     */
-    #dy;
+    #displacement;
 
     /**
      * Create a particle
@@ -36,11 +28,9 @@ export class Particle {
      * @param {number} dy Particle movement displacement on Y axis
      */
     constructor(x, y, radius, dx, dy) {
-        this.#x = x;
-        this.#y = y;
+        this.#position = new Vector2D(x, y);
         this.#radius = radius;
-        this.#dx = dx;
-        this.#dy = dy;
+        this.#displacement = new Vector2D(dx, dy);
     }
 
     /**
@@ -48,7 +38,7 @@ export class Particle {
      * @returns {number} X coordinate
      */
     get x() {
-        return this.#x;
+        return this.#position.x;
     }
 
     /**
@@ -56,19 +46,16 @@ export class Particle {
      * @returns {number} Y coordinate
      */
     get y() {
-        return this.#y;
+        return this.#position.y;
     }
 
     /**
-     * Compute particle distance to a point
-     * @param {number} x Point X coordinate
-     * @param {number} y Point Y coordinate
-     * @returns
+     * Get the distance to a point
+     * @param {number} x 
+     * @param {number} y 
      */
-    distance(x, y) {
-        let dx = this.#x - x;
-        let dy = this.#y - y;
-        return dx * dx + dy * dy;
+    distance(x , y) {
+        return this.#position.distance(x, y);
     }
 
     /**
@@ -83,7 +70,7 @@ export class Particle {
         context2d.strokeStyle = color;
         context2d.lineWidth = 1;
         context2d.beginPath();
-        context2d.moveTo(this.#x, this.#y);
+        context2d.moveTo(this.#position.x, this.#position.y);
         context2d.lineTo(x, y);
         context2d.stroke();
         context2d.restore();
@@ -98,7 +85,7 @@ export class Particle {
         context2d.save();
         context2d.fillStyle = color;
         context2d.beginPath();
-        context2d.arc(this.#x, this.#y, this.#radius, 0, PI2);
+        context2d.arc(this.#position.x, this.#position.y, this.#radius, 0, PI2);
         context2d.fill();
         context2d.restore();
     }
@@ -114,14 +101,13 @@ export class Particle {
      */
     update(width, height, mouseX, mouseY, mouseRadius) {
         // toggle direction if position is outside the canvas
-        if (this.#x + this.#radius > width || this.#x - this.#radius < 0) {
-            this.#dx = -this.#dx;
+        if (this.#position.x + this.#radius > width || this.#position.x - this.#radius < 0) {
+            this.#displacement.move(-this.#displacement.x, 0);
         }
-        if (this.#y + this.#radius > height || this.#y - this.#radius < 0) {
-            this.#dy = -this.#dy;
+        if (this.#position.y + this.#radius > height || this.#position.y - this.#radius < 0) {
+            this.#displacement.move(0, -this.#displacement.y);
         }
-        this.#x += this.#dx;
-        this.#y += this.#dy;
+        this.#position.move(this.#displacement.x, this.#displacement.y);
 
         // return if mouse is not inside the canvas
         if (mouseX === undefined || mouseY === undefined) {
@@ -133,17 +119,17 @@ export class Particle {
             return;
         }
 
-        if (mouseX < this.#x && this.#x < width - 10 * this.#radius) {
-            this.#x += 10;
+        if (mouseX < this.#position.x && this.#position.x < width - 10 * this.#radius) {
+            this.#position.move(10, 0);
         }
-        if (mouseX > this.#x && this.#x > 10 * this.#radius) {
-            this.#x -= 10;
+        if (mouseX > this.#position.x && this.#position.x > 10 * this.#radius) {
+            this.#position.move(-10, 0);
         }
-        if (mouseY < this.#y && this.#y < height - 10 * this.#radius) {
-            this.#y += 10;
+        if (mouseY < this.#position.y && this.#position.y < height - 10 * this.#radius) {
+            this.#position.move(0, 10);
         }
-        if (mouseY > this.#y && this.#y > 10 * this.#radius) {
-            this.#y -= 10;
+        if (mouseY > this.#position.y && this.#position.y > 10 * this.#radius) {
+            this.#position.move(0, -10);
         }
     }
 }

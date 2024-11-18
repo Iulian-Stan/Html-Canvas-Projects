@@ -7,7 +7,7 @@ import { Engine } from './engine.js';
 window.onload = () => {
     let canvas = document.getElementById('canvas');
     let imageLoader = new ImageLoader('../resources/deadpool.png');
-    let imageAscii = new ImageAscii(10, 'Poppins');
+    let imageAscii = new ImageAscii(10, 'Poppins', 50000);
     let engine = new Engine(canvas, imageLoader, imageAscii);
 
     engine.init(window.innerWidth, window.innerHeight);
@@ -27,7 +27,8 @@ window.onload = () => {
     pane.addBinding(engine, 'frameRate', { readonly: true });
 
     const params = pane.addFolder({ title: 'Parameters' });
-    params.addBinding(imageAscii, 'resolution', { min: 1, max: 100, step: 1 });
+    params.addBinding(imageAscii, 'fontSize', { min: 1, max: 100, step: 1 });
+    params.addBinding(imageAscii, 'mouseRadius', { min: 1000, max: 100000, step: 1000 });
 
     const image = params.addFolder({ title: 'Image' });
     image.addBinding(imageLoader, 'imageFile', {
@@ -41,5 +42,15 @@ window.onload = () => {
         engine.stopAnimation();
         engine.init(window.innerWidth, window.innerHeight);
         engine.startAnimation();
+    };
+
+    canvas.onmouseenter = canvas.onmousemove = event => {
+        engine.mouseX = event.x;
+        engine.mouseY = event.y;
+    };
+
+    canvas.onmouseleave = () => {
+        engine.mouseX = undefined;
+        engine.mouseY = undefined;
     };
 };

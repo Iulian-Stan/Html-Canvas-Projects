@@ -6,7 +6,7 @@ export class Engine {
     /** @type {number} */
     #frameRate;
     /** @type {AsciiEffect} */
-    #asciiEffect;
+    #imageAscii;
     /** @type {ImageLoader} */
     #imageLoader;
     /** @type {number} */
@@ -24,7 +24,7 @@ export class Engine {
         this.#canvas = canvas;
         this.#context2d = canvas.getContext('2d');
         this.#frameRate = 0;
-        this.#asciiEffect = asciiEffect;
+        this.#imageAscii = asciiEffect;
         this.#imageLoader = imageLoader;
         imageLoader.listener = this.#updateImage.bind(this);
     }
@@ -62,7 +62,7 @@ export class Engine {
             x = (this.#canvas.width - width) * .5;
         }
         this.#context2d.drawImage(this.#imageLoader.image, x, y, width, height);
-        this.#asciiEffect.image = this.#context2d.getImageData(0, 0, this.#canvas.width, this.#canvas.height);
+        this.#imageAscii.image = this.#context2d.getImageData(0, 0, this.#canvas.width, this.#canvas.height);
     }
 
     /**
@@ -83,12 +83,12 @@ export class Engine {
         this.#previousTimeStamp = timeStamp;
         // clear the canvas
         this.#context2d.clearRect(0, 0, this.#canvas.width, this.#canvas.height);
-        if (this.#asciiEffect.resolution === 1) {
+        if (this.#imageAscii.resolution === 1) {
             // draw image
             this.#context2d.drawImage(this.#imageLoader.image, 0, 0, this.#canvas.width, this.#canvas.height);
         } else {
             // draw ascii
-            this.#asciiEffect.draw(this.#context2d);
+            this.#imageAscii.draw(this.#context2d, this.mouseX, this.mouseY);
         }
         this.#animationRequest = window.requestAnimationFrame(this.#animationRun.bind(this));
     }

@@ -53,11 +53,13 @@ export class Vector2D {
     /**
      * Computes distance to another point
      * For optimization reason it is squared
-     * @param {Vector2D} point
+     * @param {number} x
+     * @param {number} y
+     * @returns {number}
      */
-    distance(point) {
-        let dx = this.#x - point.x;
-        let dy = this.#y - point.y;
+    distance(x, y) {
+        let dx = this.#x - x;
+        let dy = this.#y - y;
         return dx * dx + dy * dy;
     }
 }
