@@ -17,9 +17,9 @@ window.onload = () => {
 
     const params = pane.addFolder({ title: 'Parameters' });
 
-    params.addBinding(vectorField, 'cellSize', { min: 5, max: 50, step: 5 });
+    params.addBinding(vectorField, 'gridCellSize', { min: 5, max: 50, step: 5 });
     params.addBinding(vectorField, 'zoom', { min: .001, max: .01, step: .001 });
-    params.addBinding(vectorField, 'curve', { min: 5, max: 50, step: 1 });
+    params.addBinding(vectorField, 'lineLength', { min: 5, max: 50, step: 1 });
 
     const colors = params.addFolder({ title: 'Colors' });
     colors.addBinding(vectorField.colors, '0').on('change', engine.init.bind(engine));

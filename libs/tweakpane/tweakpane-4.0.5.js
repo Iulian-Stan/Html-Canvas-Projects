@@ -6289,7 +6289,7 @@ class Point2dController {
     }
 }
 
-function point2dFromUnknown(value) {
+function vector2dFromUnknown(value) {
     return Point2d.isObject(value)
         ? new Point2d(value.x, value.y)
         : new Point2d();
@@ -6333,7 +6333,7 @@ function shouldInvertY(params) {
     return 'inverted' in yParams ? !!yParams.inverted : false;
 }
 const Point2dInputPlugin = createPlugin({
-    id: 'input-point2d',
+    id: 'input-vector2d',
     type: 'input',
     accept: (value, params) => {
         if (!Point2d.isObject(value)) {
@@ -6348,7 +6348,7 @@ const Point2dInputPlugin = createPlugin({
             : null;
     },
     binding: {
-        reader: () => point2dFromUnknown,
+        reader: () => vector2dFromUnknown,
         constraint: (args) => createConstraint$3(args.params, args.initialValue),
         equals: Point2d.equals,
         writer: () => writePoint2d,

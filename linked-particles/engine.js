@@ -1,12 +1,12 @@
-export class Engine {
+ export class Engine {
     /** @type {HTMLElement} */
     #canvas;
     /** @type {CanvasRenderingContext2D} */
     #context2d;
     /** @type {number} */
     #frameRate;
-    /** @type {FlowField} */
-    #flowField;
+    /** @type {VectorField} */
+    #particleSystem;
     /** @type {number} */
     #previousTimeStamp;
     /** @type {number} */
@@ -15,13 +15,13 @@ export class Engine {
     /**
      * Create Engine instance
      * @param {HTMLElement} canvas
-     * @param {FlowField} flowField
+     * @param {VectorField} vectorField
      */
-    constructor(canvas, flowField) {
+    constructor(canvas, particleSystem) {
         this.#canvas = canvas;
         this.#context2d = canvas.getContext('2d');
         this.#frameRate = 0;
-        this.flowField = flowField;
+        this.#particleSystem = particleSystem;
     }
 
     /**
@@ -38,7 +38,7 @@ export class Engine {
     init() {
         this.#canvas.width = window.innerWidth;
         this.#canvas.height = window.innerHeight;
-        this.flowField.init(window.innerWidth, window.innerHeight);
+        this.#particleSystem.init(window.innerWidth, window.innerHeight);
     }
 
     /**
@@ -59,9 +59,9 @@ export class Engine {
         this.#previousTimeStamp = timeStamp;
         // clear the canvas
         this.#context2d.clearRect(0, 0, this.#canvas.width, this.#canvas.height);
-        // update and draw particles
-        this.flowField.update();
-        this.flowField.draw(this.#context2d);
+        // update and draw the field
+        this.#particleSystem.update(this.mouseX, this.mouseY);
+        this.#particleSystem.draw(this.#context2d);
         this.#animationRequest = window.requestAnimationFrame(this.#animationRun.bind(this));
     }
 

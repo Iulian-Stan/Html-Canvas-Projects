@@ -1,6 +1,6 @@
 import { Pane } from '../libs/tweakpane/tweakpane-4.0.5.js';
 import * as TweakpaneFileImportPlugin from '../libs/tweakpane/tweakpane-plugin-file-import-1.1.1.js';
-import { ImageLoader } from './image-loader.js';
+import { ImageLoader } from '../libs/image-loader.js';
 import { AsciiEffect } from './ascii-effect.js';
 import { Engine } from './engine.js';
 
@@ -8,7 +8,7 @@ window.onload = () => {
     let canvas = document.getElementById('canvas');
     let imageLoader = new ImageLoader('../resources/deadpool.png');
     let asciiEffect = new AsciiEffect(10, 'Poppins');
-    let engine = new Engine(canvas, asciiEffect, imageLoader);
+    let engine = new Engine(canvas, imageLoader, asciiEffect);
 
     engine.init(window.innerWidth, window.innerHeight);
     engine.startAnimation();

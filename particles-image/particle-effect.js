@@ -1,13 +1,25 @@
 import { Particle } from "./particle.js";
 
 export class ParticleEffect {
+    /** @type {number} */
     #resolution;
+    /** @type {number} */
     #image;
+    /** @type {number} */
     #particles;
+    /** @type {number} */
     #maxDistance;
+    /** @type {number} */
     #forceDistance;
+    /** @type {number} */
     #pushForce;
+    /** @type {number} */
     #gravityForce;
+
+    /**
+     * Construct the particle effect
+     * @param {number} resolution
+     */
     constructor(resolution) {
         this.#resolution = resolution;
         this.#particles = [];
@@ -17,20 +29,35 @@ export class ParticleEffect {
         this.#gravityForce = 0.05;
     }
 
+    /**
+     * Set the resolution
+     * @param {number} resolution
+     */
     set resolution(resolution) {
         this.#resolution = resolution;
         this.#init();
     }
 
+    /**
+     * Get the resolution
+     * @returns {number} Resolution
+     */
     get resolution() {
         return this.#resolution;
     }
 
+    /**
+     * Set the image
+     * @param {null|ImageData} Image
+     */
     set image(image) {
         this.#image = image;
         this.#init();
     }
 
+    /**
+     * Initialize the particle effect
+     */
     #init() {
         if (!this.#image) return;
         this.#particles = [];
@@ -58,6 +85,12 @@ export class ParticleEffect {
         }
     }
 
+    /**
+     * Update the particle effect
+     * @param {number} mouseX
+     * @param {number} mouseY
+     * @returns
+     */
     update(mouseX, mouseY) {
         if (!this.#particles || !this.#particles.length) return;
         for (let i = 0; i < this.#particles.length; ++i) {
@@ -65,6 +98,10 @@ export class ParticleEffect {
         }
     }
 
+    /**
+     * Draw the particle effect
+     * @param {CanvasRenderingContext2D} context2d
+     */
     draw(context2d) {
         if (!this.#particles || !this.#particles.length) return;
         for (let i = 0; i < this.#particles.length; ++i) {

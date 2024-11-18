@@ -4,7 +4,7 @@ import { Engine } from './engine.js';
 
 window.onload = () => {
     let canvas = document.getElementById('canvas');
-    let particleSystem = new ParticleSystem(.0002, 1, 5, '#FFFFFF', 7500, '#FFFFFF', 0.01);
+    let particleSystem = new ParticleSystem(350, 1, 5, '#FFFFFF', 7500, '#FFFFFF', 0.01);
     let engine = new Engine(canvas, particleSystem);
 
     engine.init();
@@ -17,7 +17,7 @@ window.onload = () => {
 
     const params = pane.addFolder({ title: 'Parameters' });
 
-    params.addBinding(particleSystem, 'particlesRatio', { min: 0.0001, max: 0.001, step: 0.0001 });
+    params.addBinding(particleSystem, 'particlesCount', { min: 10, max: 1000, step: 10 });
     params.addBinding(particleSystem, 'particleMinRadius', { min: 1, max: 5, step: 1 });
     params.addBinding(particleSystem, 'particleMaxRadius', { min: 5, max: 10, step: 1 });
     params.addBinding(particleSystem, 'particleColor');

@@ -1,11 +1,23 @@
 const PI2 = Math.PI * 2;
 
 export class Particle {
+    /** @type {number} */
     #originalX;
+    /** @type {number} */
     #originalY;
+    /** @type {number} */
     #currentX;
+    /** @type {number} */
     #currentY;
+    /** @type {string} */
     #color;
+
+    /**
+     * Construct a particle
+     * @param {number} x
+     * @param {number} y
+     * @param {string} color
+     */
     constructor(x, y, color) {
         this.#originalX = x;
         this.#originalY = y;
@@ -14,12 +26,15 @@ export class Particle {
         this.#color = color;
     }
 
-    #distance(x, y) {
-        let dx = this.#currentX - x;
-        let dy = this.#currentY - y;
-        return dx * dx + dy * dy;
-    }
-
+    /**
+     * Update particle position
+     * @param {number} mouseX
+     * @param {number} mouseY
+     * @param {number} maxDistance
+     * @param {number} forceDistance
+     * @param {number} pushForce
+     * @param {number} gravityForce
+     */
     update(mouseX, mouseY, maxDistance, forceDistance, pushForce, gravityForce) {
         if (mouseX === undefined) mouseX = -10000;
         if (mouseY === undefined) mouseY = -10000;
@@ -40,15 +55,13 @@ export class Particle {
                 this.#currentY -= (this.#currentY - this.#originalY) * gravityForce;
             }
         }
-        // let mouseDist = this.#distance(mouseX, mouseY);
-        // if (mouseDist < ) {
-        //     return;
-        // }
-        // if (mouseDist > ) {
-
-        // }
     }
 
+    /**
+     * Draw the particle
+     * @param {CanvasRenderingContext2D} context2d
+     * @param {number} radius
+     */
     draw(context2d, radius) {
         context2d.save();
         context2d.fillStyle = this.#color;
