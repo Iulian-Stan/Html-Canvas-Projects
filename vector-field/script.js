@@ -10,13 +10,19 @@ window.onload = () => {
     engine.init();
     engine.startAnimation();
 
-    const pane = new Pane({
-        title: 'Vector Field',
+    const pane = new Pane({ title: 'Vector Field' });
+    const runButton = pane.addButton({ title: 'Pause' }).on('click', () => {
+        if (runButton.title === 'Pause') {
+            engine.stopAnimation();
+            runButton.title = 'Resume';
+        } else {
+            engine.startAnimation();
+            runButton.title = 'Pause';
+        }
     });
     pane.addBinding(engine, 'frameRate', { readonly: true });
 
     const params = pane.addFolder({ title: 'Parameters' });
-
     params.addBinding(vectorField, 'gridCellSize', { min: 5, max: 50, step: 5 });
     params.addBinding(vectorField, 'zoom', { min: .001, max: .01, step: .001 });
     params.addBinding(vectorField, 'lineLength', { min: 5, max: 50, step: 1 });

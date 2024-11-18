@@ -10,13 +10,19 @@ window.onload = () => {
     engine.init();
     engine.startAnimation();
 
-    const pane = new Pane({
-        title: 'Flow Field',
+    const pane = new Pane({ title: 'Flow Field' });
+    const runButton = pane.addButton({ title: 'Pause' }).on('click', () => {
+        if (runButton.title === 'Pause') {
+            engine.stopAnimation();
+            runButton.title = 'Resume';
+        } else {
+            engine.startAnimation();
+            runButton.title = 'Pause';
+        }
     });
     pane.addBinding(engine, 'frameRate', { readonly: true });
 
     const params = pane.addFolder({ title: 'Parameters' });
-
     params.addBinding(flowField, 'cellSize', { min: 5, max: 50, step: 5 }).on('change', engine.init.bind(engine));
     params.addBinding(flowField, 'zoom', { min: .01, max: .25, step: .01 }).on('change', engine.init.bind(engine));
     params.addBinding(flowField, 'curve', { min: 1, max: 30, step: 1 }).on('change', engine.init.bind(engine));

@@ -1,40 +1,36 @@
+import { randomInt } from "../libs/random.js";
 import { Particle } from "./particle.js";
 
-export class ParticleEffect {
+export class ImageParticles {
     /** @type {number} */
-    #resolution;
+    #particleRadius;
+    /** @type {number} */
+    #mouseRadius;
     /** @type {number} */
     #image;
     /** @type {number} */
     #particles;
-    /** @type {number} */
-    #maxDistance;
-    /** @type {number} */
-    #forceDistance;
-    /** @type {number} */
-    #pushForce;
-    /** @type {number} */
-    #gravityForce;
 
     /**
      * Construct the particle effect
-     * @param {number} resolution
+     * @param {number} particleRadius
+     * @param {number} mouseRadius
      */
-    constructor(resolution) {
-        this.#resolution = resolution;
+    constructor(particleRadius, mouseRadius, friction, amortization, circle) {
+        this.#particleRadius = particleRadius;
+        this.#mouseRadius = mouseRadius;
+        this.friction = friction;
+        this.amortization = amortization;
+        this.circle = circle;
         this.#particles = [];
-        this.#maxDistance = 10000;
-        this.#forceDistance = 10000;
-        this.#pushForce = 500;
-        this.#gravityForce = 0.05;
     }
 
     /**
-     * Set the resolution
-     * @param {number} resolution
+     * Set particles radius
+     * @param {number} particleRadius
      */
-    set resolution(resolution) {
-        this.#resolution = resolution;
+    set particleRadius(particleRadius) {
+        this.#particleRadius = particleRadius;
         this.#init();
     }
 
@@ -42,8 +38,8 @@ export class ParticleEffect {
      * Get the resolution
      * @returns {number} Resolution
      */
-    get resolution() {
-        return this.#resolution;
+    get particleRadius() {
+        return this.#particleRadius;
     }
 
     /**
@@ -61,12 +57,12 @@ export class ParticleEffect {
     #init() {
         if (!this.#image) return;
         this.#particles = [];
-        let cellSize = this.#resolution * this.#resolution * 1.;
-        for (let row = 0; row + this.#resolution < this.#image.height; row += this.#resolution) {
-            for (let column = 0; column + this.#resolution < this.#image.width; column += this.#resolution) {
+        let cellSize = this.#particleRadius * this.#particleRadius * 1.;
+        for (let row = 0; row + this.#particleRadius < this.#image.height; row += this.#particleRadius) {
+            for (let column = 0; column + this.#particleRadius < this.#image.width; column += this.#particleRadius) {
                 let cellIndex = 0, r = 0, g = 0, b = 0, a = 0;
-                for (let cellRow = row; cellRow < row + this.#resolution; ++cellRow) {
-                    for (let cellColumn = column; cellColumn < column + this.#resolution; ++cellColumn) {
+                for (let cellRow = row; cellRow < row + this.#particleRadius; ++cellRow) {
+                    for (let cellColumn = column; cellColumn < column + this.#particleRadius; ++cellColumn) {
                         cellIndex = (this.#image.width * cellRow + cellColumn) * 4;
                         r += this.#image.data[cellIndex];
                         g += this.#image.data[cellIndex + 1];
@@ -79,7 +75,7 @@ export class ParticleEffect {
                 b /= cellSize;
                 a /= cellSize;
                 if (a > 128) {
-                    this.#particles.push(new Particle(column, row, `rgba(${r},${g},${b},${a/255})`));
+                    this.#particles.push(new Particle(column, row, `rgba(${r},${g},${b},${a/255})`, randomInt(this.#image.width - 1), this.#image.height));
                 }
             }
         }
@@ -94,7 +90,7 @@ export class ParticleEffect {
     update(mouseX, mouseY) {
         if (!this.#particles || !this.#particles.length) return;
         for (let i = 0; i < this.#particles.length; ++i) {
-            this.#particles[i].update(mouseX, mouseY, this.#maxDistance, this.#forceDistance, this.#pushForce, this.#gravityForce);
+            this.#particles[i].update(mouseX, mouseY, this.#mouseRadius, this.friction, this.amortization);
         }
     }
 
@@ -105,7 +101,7 @@ export class ParticleEffect {
     draw(context2d) {
         if (!this.#particles || !this.#particles.length) return;
         for (let i = 0; i < this.#particles.length; ++i) {
-            this.#particles[i].draw(context2d, this.#resolution / 2);
+            this.#particles[i].draw(context2d, this.#particleRadius, this.circle);
         }
     }
 }

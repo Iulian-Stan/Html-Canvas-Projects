@@ -1,7 +1,7 @@
 import { Particle } from "./particle.js";
 const SYMBOLS = ':\/^-~|;_><"+!{}=*?)(71]3[IJ#52C6L9V8T4$YFAS%0UEZPXNG@OK&RQDHWBM';
 
-export class AsciiEffect {
+export class ImageAscii {
     #resolution;
     #fontFamily;
     #font;

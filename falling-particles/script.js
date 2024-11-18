@@ -13,9 +13,7 @@ window.onload = () => {
     engine.init(window.innerWidth, window.innerHeight);
     engine.startAnimation();
 
-    const pane = new Pane({
-        title: 'ASCII Art',
-    });
+    const pane = new Pane({ title: 'Falling Particles' });
     pane.registerPlugin(TweakpaneFileImportPlugin);
     const runButton = pane.addButton({ title: 'Pause' }).on('click', () => {
         if (runButton.title === 'Pause') {
@@ -57,15 +55,5 @@ window.onload = () => {
         engine.stopAnimation();
         engine.init(window.innerWidth, window.innerHeight);
         engine.startAnimation();
-    };
-
-    canvas.onmouseenter = canvas.onmousemove = event => {
-        engine.mouseX = event.x;
-        engine.mouseY = event.y;
-    };
-
-    canvas.onmouseleave = () => {
-        engine.mouseX = undefined;
-        engine.mouseY = undefined;
     };
 };

@@ -1,7 +1,7 @@
 import { randomFloat } from '../libs/random.js';
 import { Particle } from './particle.js';
 
-export class ParticleSystem {
+export class LinkedParticles {
     /**
      * Particles count
      * @type {number}
