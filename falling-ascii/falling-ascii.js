@@ -174,7 +174,7 @@ export class FallingAscii {
         if (!this.#particles || !this.#particles.length) return;
         let height = this.#imageLuminosity.length;
         for (let i = 0; i < this.#particles.length; ++i) {
-            this.#particles[i].update();//Math.max(1, this.#imageLuminosity[Math.floor(this.#particles[i].y)][Math.floor(this.#particles[i].x)]));
+            this.#particles[i].update();
             if (this.#particles[i].y >= height) {
                 this.#createParticle(this.#particles[i]);
             }

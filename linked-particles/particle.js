@@ -102,12 +102,12 @@ export class Particle {
     update(width, height, mouseX, mouseY, mouseRadius) {
         // toggle direction if position is outside the canvas
         if (this.#position.x + this.#radius > width || this.#position.x - this.#radius < 0) {
-            this.#displacement.move(-this.#displacement.x, 0);
+            this.#displacement.translate(-this.#displacement.x, 0);
         }
         if (this.#position.y + this.#radius > height || this.#position.y - this.#radius < 0) {
-            this.#displacement.move(0, -this.#displacement.y);
+            this.#displacement.translate(0, -this.#displacement.y);
         }
-        this.#position.move(this.#displacement.x, this.#displacement.y);
+        this.#position.translate(this.#displacement.x, this.#displacement.y);
 
         // return if mouse is not inside the canvas
         if (mouseX === undefined || mouseY === undefined) {
@@ -120,16 +120,16 @@ export class Particle {
         }
 
         if (mouseX < this.#position.x && this.#position.x < width - 10 * this.#radius) {
-            this.#position.move(10, 0);
+            this.#position.translate(10, 0);
         }
         if (mouseX > this.#position.x && this.#position.x > 10 * this.#radius) {
-            this.#position.move(-10, 0);
+            this.#position.translate(-10, 0);
         }
         if (mouseY < this.#position.y && this.#position.y < height - 10 * this.#radius) {
-            this.#position.move(0, 10);
+            this.#position.translate(0, 10);
         }
         if (mouseY > this.#position.y && this.#position.y > 10 * this.#radius) {
-            this.#position.move(0, -10);
+            this.#position.translate(0, -10);
         }
     }
 }

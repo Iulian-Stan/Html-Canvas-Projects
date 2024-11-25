@@ -29,9 +29,9 @@ export class Particle {
     }
 
     reset(x, y, r, vx, vy) {
-        this.#position.update(x, y);
+        this.#position.reset(x, y);
         this.#radius = r;
-        this.#velocity.update(vx, vy);
+        this.#velocity.reset(vx, vy);
     }
 
     /**
@@ -51,7 +51,7 @@ export class Particle {
     }
 
     update(amortization) {
-        this.#position.move(this.#velocity.x / amortization, this.#velocity.y / amortization);
+        this.#position.translate(this.#velocity.x / amortization, this.#velocity.y / amortization);
     }
 
     /**

@@ -29,7 +29,7 @@ export class Particle {
      * @param {number} size 
      */
     reset(x, y, size) {
-        this.#position.update(x, y);
+        this.#position.reset(x, y);
         this.#size = size;
     }
 
@@ -50,7 +50,7 @@ export class Particle {
     }
 
     update(amortization) {
-        this.#position.move(0, this.#size);//this.#velocity.x / amortization, this.#velocity.y / amortization);
+        this.#position.translate(0, this.#size);
     }
 
     /**

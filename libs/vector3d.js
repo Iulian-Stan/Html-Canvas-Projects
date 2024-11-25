@@ -1,17 +1,21 @@
-export class Vector2D {
+export class Vector3D {
     /** @type {number} */
     #x;
     /** @type {number} */
     #y;
+    /** @type {number} */
+    #z;
 
     /**
      * Construct a 2D vector
      * @param {number} x
      * @param {number} y
+     * @param {number} z
      */
-    constructor(x, y) {
+    constructor(x, y, z) {
         this.#x = x;
         this.#y = y;
+        this.#z = z;
     }
 
     /**
@@ -31,23 +35,35 @@ export class Vector2D {
     }
 
     /**
-     * Reset vector values
-     * @param {number} x
-     * @param {number} y 
+     * Get z coordinate
+     * @returns {number}
      */
-    reset(x, y) {
-        this.#x = x;
-        this.#y = y;
+    get z() {
+        return this.#z;
     }
 
     /**
-     * Translate vector
-     * @param {number} dx
-     * @param {number} dy 
+     * Reset vector values
+     * @param {number} x
+     * @param {number} y
+     * @param {number} z
      */
-    translate(dx, dy) {
+    reset(x, y, z) {
+        this.#x = x;
+        this.#y = y;
+        this.#z = z;
+    }
+
+    /**
+     * Translate point position
+     * @param {number} dx
+     * @param {number} dy
+     * @param {number} dz 
+     */
+    translate(dx, dy, dz) {
         this.#x += dx;
         this.#y += dy;
+        this.#y += dz;
     }
 
     /**
@@ -55,11 +71,13 @@ export class Vector2D {
      * For optimization reason it is squared
      * @param {number} x
      * @param {number} y
+     * @param {number} z
      * @returns {number}
      */
     distance(x, y) {
         let dx = this.#x - x;
         let dy = this.#y - y;
-        return dx * dx + dy * dy;
+        let dz = this.#z - z;
+        return dx * dx + dy * dy + dz * dz;
     }
 }

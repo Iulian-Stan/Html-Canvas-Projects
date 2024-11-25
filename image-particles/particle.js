@@ -43,14 +43,14 @@ export class Particle {
             let force = -mouseRadius / distance;
             if (distance < mouseRadius) {
                 let angle = Math.atan2(dy, dx);
-                this.#velocity.move(
+                this.#velocity.translate(
                     force * Math.cos(angle),
                     force * Math.sin(angle)
                 );
             }
         }
-        this.#velocity.update(this.#velocity.x * friction, this.#velocity.y * friction);
-        this.#currentPos.move(
+        this.#velocity.reset(this.#velocity.x * friction, this.#velocity.y * friction);
+        this.#currentPos.translate(
             this.#velocity.x + (this.#originalPos.x - this.#currentPos.x) * amortization,
             this.#velocity.y + (this.#originalPos.y - this.#currentPos.y) * amortization
         );

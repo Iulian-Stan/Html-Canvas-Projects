@@ -1,11 +1,12 @@
-# Particle Effects
-Particle effects implementation using HTML Canvas and pure JavaScript
+# HTML Canvas Projects
+Small projects implemented using HTML Canvas and pure JavaScript
 
 # Preview
-* [Falling ASCII](https://iulian-stan.github.io/Particle-Effects/falling-ascii/)
-* [Falling Particles](https://iulian-stan.github.io/Particle-Effects/falling-particles/)
-* [Flow Field](https://iulian-stan.github.io/Particle-Effects/flow-field/)
-* [Image ASCII](https://iulian-stan.github.io/Particle-Effects/image-ascii/)
-* [Image Particles](https://iulian-stan.github.io/Particle-Effects/image-particles/)
-* [Linked Particles](https://iulian-stan.github.io/Particle-Effects/linked-particles/)
-* [Vector Field](https://iulian-stan.github.io/Particle-Effects/vector-field/)
+* [Cube Projection](https://iulian-stan.github.io/Html-Canvas-Projects/cube-projection/)
+* [Falling ASCII](https://iulian-stan.github.io/Html-Canvas-Projects/falling-ascii/)
+* [Falling Particles](https://iulian-stan.github.io/Html-Canvas-Projects/falling-particles/)
+* [Flow Field](https://iulian-stan.github.io/Html-Canvas-Projects/flow-field/)
+* [Image ASCII](https://iulian-stan.github.io/Html-Canvas-Projects/image-ascii/)
+* [Image Particles](https://iulian-stan.github.io/Html-Canvas-Projects/image-particles/)
+* [Linked Particles](https://iulian-stan.github.io/Html-Canvas-Projects/linked-particles/)
+* [Vector Field](https://iulian-stan.github.io/Html-Canvas-Projects/vector-field/)
