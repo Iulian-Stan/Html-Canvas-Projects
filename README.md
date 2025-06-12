@@ -4,26 +4,26 @@ Small projects implemented using HTML Canvas and pure JavaScript
 
 # Projects
 
-## Cube Projection - [demo](https://iulian-stan.github.io/Html-Canvas-Projects/cube-projection/)
+## Cube Projection - [demo](https://iulian-stan.github.io/html-canvas-js/cube-projection/)
 ![](media/cube-projection.gif)
 
-## Falling ASCII - [demo](https://iulian-stan.github.io/Html-Canvas-Projects/falling-ascii/)
+## Falling ASCII - [demo](https://iulian-stan.github.io/html-canvas-js/falling-ascii/)
 ![](media/falling-ascii.gif)
 
-## Falling Particles - [demo](https://iulian-stan.github.io/Html-Canvas-Projects/falling-particles/)
+## Falling Particles - [demo](https://iulian-stan.github.io/html-canvas-js/falling-particles/)
 ![](media/falling-particles.gif)
 
-## Flow Field - [demo](https://iulian-stan.github.io/Html-Canvas-Projects/flow-field/)
+## Flow Field - [demo](https://iulian-stan.github.io/html-canvas-js/flow-field/)
 ![](media/flow-field.gif)
 
-## Image ASCII - [demo](https://iulian-stan.github.io/Html-Canvas-Projects/image-ascii/)
+## Image ASCII - [demo](https://iulian-stan.github.io/html-canvas-js/image-ascii/)
 ![](media/image-ascii.gif)
 
-## Image Particles - [demo](https://iulian-stan.github.io/Html-Canvas-Projects/image-particles/)
+## Image Particles - [demo](https://iulian-stan.github.io/html-canvas-js/image-particles/)
 ![](media/image-particles.gif)
 
-## Linked Particles - [demo](https://iulian-stan.github.io/Html-Canvas-Projects/linked-particles/)
+## Linked Particles - [demo](https://iulian-stan.github.io/html-canvas-js/linked-particles/)
 ![](media/linked-particles.gif)
 
-## Vector Field - [demo](https://iulian-stan.github.io/Html-Canvas-Projects/vector-field/)
+## Vector Field - [demo](https://iulian-stan.github.io/html-canvas-js/vector-field/)
 ![](media/vector-field.gif)
