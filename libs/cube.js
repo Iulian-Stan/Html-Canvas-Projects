@@ -60,7 +60,7 @@ export class Cube {
 
     /**
      * Initialize array with cube vertices
-     * @param {Vector3D[]} vertices 
+     * @param {Vector3D[]} vertices
      */
     init(vertices) {
         for (let i = 0; i < vertices.length; ++i) {

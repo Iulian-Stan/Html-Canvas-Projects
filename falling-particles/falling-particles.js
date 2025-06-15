@@ -182,7 +182,7 @@ export class FallingParticles {
 
     /**
      * Create a new or update an existing particle
-     * @param {Particle|null} particle 
+     * @param {Particle|null} particle
      * @returns {null|Particle}
      */
     #createParticle(particle) {

@@ -51,8 +51,8 @@ export class Particle {
 
     /**
      * Get the distance to a point
-     * @param {number} x 
-     * @param {number} y 
+     * @param {number} x
+     * @param {number} y
      */
     distance(x , y) {
         return this.#position.distance(x, y);

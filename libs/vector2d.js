@@ -33,7 +33,7 @@ export class Vector2D {
     /**
      * Reset vector values
      * @param {number} x
-     * @param {number} y 
+     * @param {number} y
      */
     reset(x, y) {
         this.#x = x;
@@ -43,7 +43,7 @@ export class Vector2D {
     /**
      * Translate vector
      * @param {number} dx
-     * @param {number} dy 
+     * @param {number} dy
      */
     translate(dx, dy) {
         this.#x += dx;

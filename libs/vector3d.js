@@ -58,7 +58,7 @@ export class Vector3D {
      * Translate point position
      * @param {number} dx
      * @param {number} dy
-     * @param {number} dz 
+     * @param {number} dz
      */
     translate(dx, dy, dz) {
         this.#x += dx;

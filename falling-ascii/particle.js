@@ -15,7 +15,7 @@ export class Particle {
      * Construct a particle
      * @param {number} x
      * @param {number} y
-     * @param {number} size 
+     * @param {number} size
      */
     constructor(x, y, size) {
         this.#position = new Vector2D(x, y);
@@ -26,7 +26,7 @@ export class Particle {
      * Reset the particle
      * @param {number} x
      * @param {number} y
-     * @param {number} size 
+     * @param {number} size
      */
     reset(x, y, size) {
         this.#position.reset(x, y);

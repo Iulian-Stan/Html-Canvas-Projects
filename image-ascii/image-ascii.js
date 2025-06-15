@@ -63,7 +63,7 @@ export class ImageAscii {
     }
 
     draw(context2d, mouseX, mouseY) {
-        if (!this.#particles || !this.#particles.length) return;        
+        if (!this.#particles || !this.#particles.length) return;
         context2d.textAlign = 'center';
         context2d.textBaseline = 'middle';
         for (let i = 0; i < this.#particles.length; ++i) {

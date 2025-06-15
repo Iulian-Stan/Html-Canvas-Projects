@@ -12,7 +12,7 @@ export class Renderer {
     #cube;
     /** @type {Vector3D} */
     #rotation;
-    
+
     constructor(focalLength, edgeColor, faceColor, cube) {
         this.focalLength = focalLength;
         this.edgeColor = edgeColor;
@@ -35,7 +35,7 @@ export class Renderer {
     init() {
         this.#cube.init(this.#points3d);
     }
-    
+
     #vertexRotate(rx, ry, rz) {
         let cosx = Math.cos(rx), sinx = Math.sin(rx);
         let cosy = Math.cos(ry), siny = Math.sin(ry);
@@ -111,7 +111,7 @@ export class Renderer {
 
     /**
      * Draw the 3D projection
-     * @param {CanvasRenderingContext2D} context2d 
+     * @param {CanvasRenderingContext2D} context2d
      */
     draw(context2d) {
         context2d.strokeStyle = this.edgeColor;
