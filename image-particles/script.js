@@ -40,7 +40,6 @@ window.onload = () => {
         }
     });
 
-
     const image = params.addFolder({ title: 'Image' });
     image.addBinding(imageLoader, 'imageFile', {
         view: 'file-input',
